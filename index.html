@@ -2,48 +2,36 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Teste Marcador Personalizado</title>
 
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.5/aframe/build/aframe-ar.js"></script>
 </head>
 
-<body style="margin: 0; overflow: hidden;">
+<body style="margin:0; overflow:hidden;">
 
-    <a-scene
-        embedded
-        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: true;">
+    <a-scene embedded arjs>
 
-        <a-marker
-            type="pattern"
-            url="pattern-teste.patt"
-            emitevents="true">
+        <a-assets>
+            <a-asset-item
+                id="modelo"
+                src="Suzane.glb">
+            </a-asset-item>
+        </a-assets>
 
-            <a-box
-                position="0 0.5 0"
-                material="color: red;"
-                scale="0.5 0.5 0.5">
-            </a-box>
+        <a-marker preset="hiro">
+
+            <a-entity
+                gltf-model="#modelo"
+                position="0 0 0"
+                rotation="0 0 0"
+                scale="0.1 0.1 0.1">
+            </a-entity>
 
         </a-marker>
 
         <a-entity camera></a-entity>
 
     </a-scene>
-
-    <script>
-        window.addEventListener('load', () => {
-            const marker = document.querySelector('a-marker');
-
-            marker.addEventListener('markerFound', () => {
-                console.log('Marcador encontrado!');
-            });
-
-            marker.addEventListener('markerLost', () => {
-                console.log('Marcador perdido!');
-            });
-        });
-    </script>
 
 </body>
 </html>
